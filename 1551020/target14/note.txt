@@ -1,7 +1,0 @@
-Phase2 :
-We found out that at line 211 in ctarget.asm there is a line  400ecd:	48 c7 c7 b5 11 40 00 	mov    $0x4011b5,%rdi . This lines is to move a value to rdi. 48 c7 c7 is therefore machine code of a move command. Applying the same logic, we move our cookie to rdi. In our solution file for level 2 we need to replace the first six bits with 48 c7 c7, followed by the address of our cookie, which is d5 c2 6f 2d, and c3 to return. Then we use GDB to get the value of rdi. which we use to pass parameters to touch2. After all, we pass the touch2 function address in and then it's done. 
-
-Phase3 :
-
-Your mission is to get CTARGET to execute the code for touch3. We must pass a string as its argument using our cookie. 
-First we need to convert the cookie to string(a string is represented in C as a sequence of bytes followed by a byte with value 0). 0x2d6fc2d5 = 32 64 36 66 63 32 64 35. The address of rdi is a constant ( the same to phase2 ) 58 bd 66 55. Now, on the first line, we do the same as phase 2. Instead of moving cookie to rdi using its value, it's now a pointer so we have to locate where the cookie is ( or we use its address ). When functions hexmatch and strncmp are called, they push data onto the stack, overwriting portions of memory that held the buffer used by getbuf.

